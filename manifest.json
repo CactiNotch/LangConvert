@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "American to Australian English Translator",
+  "version": "1.0",
+  "description": "Translates American English to Australian English",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/bundle.js"]
+    }
+  ]
+}
