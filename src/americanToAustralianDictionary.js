@@ -1,4 +1,3 @@
-// americanToAustralianDictionary.js
 export const EXCEPTIONS = ["fulfilling"];
 
 export const DICTIONARY = {

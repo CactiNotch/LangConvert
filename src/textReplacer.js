@@ -1,4 +1,3 @@
-// textReplacer.js
 import {
   DICTIONARY,
   EXCEPTIONS,
@@ -52,6 +51,7 @@ export function replaceAmericanWithAustralianText(text) {
     const contextWord = Object.keys(DICTIONARY.contextSensitive).find((w) =>
       base.toLowerCase().includes(w)
     );
+
     if (contextWord) {
       const context = determineContext(base, text);
       return DICTIONARY.contextSensitive[contextWord](context);
@@ -71,6 +71,6 @@ export function replaceAmericanWithAustralianText(text) {
     if (!auBase) return match;
 
     const replacementBase = capitaliseIfNeeded(base, auBase);
-    return replacementBase + suffix;
+    return replacementBase + suffix.toLowerCase();
   });
 }

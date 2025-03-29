@@ -1,4 +1,3 @@
-// contentScript.js
 import { replaceAmericanWithAustralianText } from './textReplacer.js';
 
 function walkTextNodes(node) {
@@ -23,7 +22,6 @@ function processPage() {
 // Run the transformation when the page loads
 processPage();
 
-// Optional: Add a MutationObserver to handle dynamically loaded content
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     mutation.addedNodes.forEach(walkTextNodes);
