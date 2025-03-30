@@ -2,27 +2,51 @@ import {
   DICTIONARY,
   EXCEPTIONS,
   ER_TO_RE_WORDS,
+  PREFIXES,
+  SUFFIXES,
 } from "./americanToAustralianDictionary.js";
 import { determineContext } from "./contextUtils.js";
 
-function capitaliseIfNeeded(original, replacement) {
-  return original[0] === original[0].toUpperCase()
-    ? replacement[0].toUpperCase() + replacement.slice(1)
-    : replacement;
+function capitaliseIfNeeded(prefix, original, replacement) {
+  // Handle case with prefix
+  if (prefix) {
+    let processedPrefix = prefix;
+
+    // Preserve the capitalisation of the prefix
+    if (prefix[0] === prefix[0].toUpperCase()) {
+      processedPrefix = prefix[0].toUpperCase() + prefix.slice(1).toLowerCase();
+    } else {
+      processedPrefix = prefix.toLowerCase();
+    }
+
+    return [processedPrefix + replacement, true];
+  }
+  // Handle case without prefix
+  else {
+    // Preserve the capitalisation of the original word
+    if (original[0] === original[0].toUpperCase()) {
+      replacement = replacement[0].toUpperCase() + replacement.slice(1);
+    }
+
+    return [replacement, false];
+  }
 }
 
-function handleErToReReplacement(base, suffix, auBase) {
-  let replacementBase = capitaliseIfNeeded(base, auBase);
+function handleErToReReplacement(prefix, base, suffix, auBase) {
+  // let replacementBase = capitaliseIfNeeded(prefix, base, auBase);
+  const [replacementBase, hasPrefix] = capitaliseIfNeeded(prefix, base, auBase);
 
-  // Handle special cases for -er to -re conversion
+  // Handle special cases for -er to -re conversion with suffixes
+  let adjustedSuffix = suffix;
   if (suffix.startsWith("e")) {
-    suffix = suffix.slice(1);
+    adjustedSuffix = suffix.slice(1);
   }
   if (suffix === "ing") {
-    replacementBase = replacementBase.slice(0, -1);
+    // For words like "centering" -> "centring", remove the trailing 'e'
+    return replacementBase.slice(0, -1) + adjustedSuffix;
   }
 
-  return replacementBase + suffix;
+  return replacementBase + adjustedSuffix;
 }
 
 export function replaceAmericanWithAustralianText(text) {
@@ -37,13 +61,13 @@ export function replaceAmericanWithAustralianText(text) {
 
   // Create a regex to match words with potential suffixes
   const regex = new RegExp(
-    "\\b(" +
-      Object.keys(combinedDictionary).join("|") +
-      ")(ed|ing|s|es|al|ation|ations|ally|er|ers|ment|ments|e)?\\b",
+    `\\b(${PREFIXES.join("|")})?` +
+      `(${Object.keys(combinedDictionary).join("|")})` +
+      `(${SUFFIXES.join("|")})?\\b`,
     "gi"
   );
 
-  return text.replace(regex, (match, base, suffix = "") => {
+  return text.replace(regex, (match, prefix = "", base, suffix = "") => {
     // Skip exceptions
     if (EXCEPTIONS.includes(match.toLowerCase())) return match;
 
@@ -60,6 +84,7 @@ export function replaceAmericanWithAustralianText(text) {
     // Handle ER to RE words
     if (ER_TO_RE_WORDS.includes(base.toLowerCase())) {
       return handleErToReReplacement(
+        prefix,
         base,
         suffix,
         combinedDictionary[base.toLowerCase()]
@@ -70,7 +95,10 @@ export function replaceAmericanWithAustralianText(text) {
     const auBase = combinedDictionary[base.toLowerCase()];
     if (!auBase) return match;
 
-    const replacementBase = capitaliseIfNeeded(base, auBase);
-    return replacementBase + suffix.toLowerCase();
+    const [replacement, hasPrefix] = capitaliseIfNeeded(prefix, base, auBase);
+
+    return hasPrefix
+      ? replacement + suffix.toLowerCase()
+      : (prefix || "") + replacement + suffix.toLowerCase();
   });
 }

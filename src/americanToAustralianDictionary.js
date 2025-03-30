@@ -97,6 +97,7 @@ export const DICTIONARY = {
     realiz: "realis",
     proselytiz: "proselytis",
     legitimiz: "legitimis",
+    delegimiz: "delegimis",
     apologiz: "apologis",
     formaliz: "formalis",
     materializ: "materialis",
@@ -117,6 +118,16 @@ export const DICTIONARY = {
     indivitualiz: "indivitualis",
     incentiviz: "incentivis",
     traumatiz: "traumatis",
+    humaniz: "humanis",
+    privatiz: "privatis",
+    nationaliz: "nationalis",
+    regionaliz: "regionalis",
+    globaliz: "globalis",
+    globalizaliz: "globalisalis",
+    economiz: "economis",
+    pragmatiz: "pragmatis",
+    conceptualiz: "conceptualis",
+    contextualiz: "contextualis",
   },
 
   // Special context-sensitive words
@@ -148,4 +159,22 @@ export const ER_TO_RE_WORDS = [
   "kilometer",
   "saber",
   "maneuver",
+];
+
+export const PREFIXES = ["de", "un", "re", "pre", "post", "dis", "mis", "non"];
+
+export const SUFFIXES = [
+  "ed",
+  "ing",
+  "s",
+  "e",
+  "es",
+  "al",
+  "ation",
+  "ations",
+  "ally",
+  "er",
+  "ers",
+  "ment",
+  "ments",
 ];
