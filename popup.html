@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LangConvert</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+        text-align: center;
+        width: 300px;
+        height: 310px;
+        overflow-x: hidden;
+      }
+
+      .container {
+        padding: 20px;
+        width: 260px;
+        height: 270px;
+        overflow-y: auto;
+      }
+
+      h3 {
+        margin: 0;
+        padding: 10px 0;
+        background-color: #0078d7;
+        color: white;
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 1em;
+        margin: 15px 0;
+        text-align: left;
+      }
+
+      .button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #0078d7;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: #005bb5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3>LangConvert</h3>
+      <p>
+        LangConvert is a browser extension that automatically converts American
+        English words to their Australian English equivalents as you browse the
+        web.
+      </p>
+      <p>
+        Whether you're reading articles, emails, or other content, this
+        extension ensures consistency with Australian spelling conventions.
+      </p>
+      <button id="convertToggleButton" class="button">
+        Enable/Disable Conversion
+      </button>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

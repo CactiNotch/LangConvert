@@ -3,11 +3,18 @@
   "name": "American to Australian English Translator",
   "version": "1.0",
   "description": "Translates American English to Australian English",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage", "tabs"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["dist/bundle.js"]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "American to Aussie English Converter"
+  }
 }

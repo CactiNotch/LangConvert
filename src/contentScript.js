@@ -1,11 +1,11 @@
-import { replaceAmericanWithAustralianText } from './textReplacer.js';
+import { replaceAmericanWithAustralianText } from "./textReplacer.js";
 
 function walkTextNodes(node) {
   if (node.nodeType === Node.TEXT_NODE) {
     // Avoid modifying input, textarea, and script elements
     const parentElement = node.parentElement;
-    const forbiddenTags = ['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA'];
-    
+    const forbiddenTags = ["SCRIPT", "STYLE", "INPUT", "TEXTAREA"];
+
     if (parentElement && !forbiddenTags.includes(parentElement.tagName)) {
       node.nodeValue = replaceAmericanWithAustralianText(node.nodeValue);
     }
@@ -19,16 +19,30 @@ function processPage() {
   walkTextNodes(document.body);
 }
 
-// Run the transformation when the page loads
-processPage();
-
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    mutation.addedNodes.forEach(walkTextNodes);
+// Check if translations is enabled for the current site before processing
+async function init() {
+  const response = await chrome.runtime.sendMessage({
+    type: "checkSiteStatus",
+    url: window.location.href,
   });
-});
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+  if (!response.isDisabled) {
+    // Process existing content
+    processPage();
+
+    // Observe for changes in the DOM and re-run the transformation
+    // Might be removed if performance is an issue
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach(walkTextNodes);
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
+}
+
+init();
