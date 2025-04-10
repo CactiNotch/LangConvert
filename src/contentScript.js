@@ -1,4 +1,4 @@
-import { replaceAmericanWithAustralianText } from "./textReplacer.js";
+import { replaceAmericanWithCommonwealthText } from "./textReplacer.js";
 
 function walkTextNodes(node) {
   if (node.nodeType === Node.TEXT_NODE) {
@@ -7,7 +7,7 @@ function walkTextNodes(node) {
     const forbiddenTags = ["SCRIPT", "STYLE", "INPUT", "TEXTAREA"];
 
     if (parentElement && !forbiddenTags.includes(parentElement.tagName)) {
-      node.nodeValue = replaceAmericanWithAustralianText(node.nodeValue);
+      node.nodeValue = replaceAmericanWithCommonwealthText(node.nodeValue);
     }
   } else if (node.nodeType === Node.ELEMENT_NODE) {
     // Recursively walk child nodes

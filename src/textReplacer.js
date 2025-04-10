@@ -4,7 +4,7 @@ import {
   ER_TO_RE_WORDS,
   PREFIXES,
   SUFFIXES,
-} from "./americanToAustralianDictionary.js";
+} from "./americanToCommonwealthDictionary.js";
 import { determineContext } from "./contextUtils.js";
 
 function capitaliseIfNeeded(prefix, original, replacement) {
@@ -49,7 +49,7 @@ function handleErToReReplacement(prefix, base, suffix, auBase) {
   return replacementBase + adjustedSuffix;
 }
 
-export function replaceAmericanWithAustralianText(text) {
+export function replaceAmericanWithCommonwealthText(text) {
   // Combine all dictionaries into a single lookup
   const combinedDictionary = {
     ...DICTIONARY.miscellaneous,
