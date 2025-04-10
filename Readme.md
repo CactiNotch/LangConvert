@@ -1,5 +1,5 @@
 TODO
-- [ ] Allow extension to be disabled by the user
-- [ ] Create UI
+- [x] Allow extension to be disabled by the user
+- [x] Create UI
 - [ ] Add icons
 - [x] Handle random capitalisation/complete capitalisation

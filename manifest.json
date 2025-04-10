@@ -3,7 +3,7 @@
   "name": "American to Australian English Translator",
   "version": "1.0",
   "description": "Translates American English to Australian English",
-  "permissions": ["activeTab", "storage", "tabs"],
+  "permissions": ["activeTab", "storage", "tabs", "commands"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -16,5 +16,14 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "American to Aussie English Converter"
+  },
+  "commands": {
+    "toggle-conversion": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "Command+Shift+1"
+      },
+      "description": "Toggle English conversion for the current site"
+    }
   }
 }
