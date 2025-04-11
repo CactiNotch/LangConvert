@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const convertToggleButton = document.getElementById("convertToggleButton");
+  const toggleButton = document.getElementById("convertToggleButton");
 
   // Get current tab URL
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -11,24 +11,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     url: url,
   });
 
-  // Set initial button text
-  convertToggleButton.textContent = response.isDisabled
-    ? "Enable Conversion"
-    : "Disable Conversion";
+  // Set initial button state
+  if (response.isDisabled) {
+    toggleButton.classList.remove("enabled");
+    toggleButton.classList.add("disabled");
+    toggleButton.textContent = "Conversion Disabled";
+  } else {
+    toggleButton.classList.remove("disabled");
+    toggleButton.classList.add("enabled");
+    toggleButton.textContent = "Conversion Enabled";
+  }
 
-  // Add click handler
-  convertToggleButton.addEventListener("click", async () => {
+  toggleButton.addEventListener("click", async () => {
     const response = await chrome.runtime.sendMessage({
       type: "toggleSite",
       url: url,
     });
 
-    // Update button text
-    convertToggleButton.textContent = response.isDisabled
-      ? "Enable Conversion"
-      : "Disable Conversion";
+    if (response.isDisabled) {
+      toggleButton.classList.remove("enabled");
+      toggleButton.classList.add("disabled");
+      toggleButton.textContent = "Conversion Disabled";
+    } else {
+      toggleButton.classList.remove("disabled");
+      toggleButton.classList.add("enabled");
+      toggleButton.textContent = "Conversion Enabled";
+    }
 
-    // Refresh the current tab to apply changes
     chrome.tabs.reload(tab.id);
   });
 });

@@ -142,6 +142,8 @@ export const DICTIONARY = {
     verbaliz: "verbalis",
     idealiz: "idealis",
     victimiz: "victimis",
+    criminaliz: "criminalis",
+    industrializ: "industrialis",
   },
 
   // Special context-sensitive words

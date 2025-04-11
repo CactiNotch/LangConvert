@@ -4,72 +4,148 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LangConvert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --bg-color: #e0e5ec;
+        --enabled-color: #4caf50;
+        --disabled-color: #f44336;
+        --text-color: #2d4263;
+        --shadow-light: #ffffff;
+        --shadow-dark: #a3b1c6;
+      }
+
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Faculty Glyphic", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f9;
-        color: #333;
+        background-color: var(--bg-color);
+        color: var(--text-color);
         text-align: center;
         width: 300px;
-        height: 310px;
+        height: 200px;
         overflow-x: hidden;
       }
 
-      .container {
-        padding: 20px;
-        width: 260px;
-        height: 270px;
-        overflow-y: auto;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        background-color: var(--bg-color);
+        box-shadow: 3px 3px 6px var(--shadow-dark),
+          -3px -3px 6px var(--shadow-light);
+        height: 40px;
       }
 
-      h3 {
-        margin: 0;
-        padding: 10px 0;
-        background-color: #0078d7;
-        color: white;
-        font-size: 1.5em;
+      .logo img {
+        height: 32px;
+        padding-left: 5px;
+        filter: drop-shadow(2px 2px 3px var(--shadow-dark));
+        transition: filter 0.2s ease;
       }
 
-      p {
-        font-size: 1em;
-        margin: 15px 0;
-        text-align: left;
+      .title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text-color);
+      }
+
+      .faq a {
+        padding-right: 15px;
+        font-size: medium;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+      }
+
+      .faq a:hover {
+        text-shadow: 1px 1px 2px var(--shadow-dark);
       }
 
       .button {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #0078d7;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1em;
-        transition: background-color 0.3s;
+        position: relative;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 12px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Faculty Glyphic", sans-serif;
+        font-weight: normal;
+        cursor: pointer;
+        box-shadow: 6px 6px 12px var(--shadow-dark),
+          -6px -6px 12px var(--shadow-light);
+        transition: all 0.2s ease;
+        margin-top: 30px;
       }
 
-      .button:hover {
-        background-color: #005bb5;
+      .button:active {
+        box-shadow: inset 4px 4px 8px var(--shadow-dark),
+          inset -4px -4px 8px var(--shadow-light);
+      }
+
+      .button.enabled {
+        background: var(--enabled-color);
+        color: var(--bg-color);
+        box-shadow: 6px 6px 12px rgba(76, 175, 80, 0.3),
+          -6px -6px 12px var(--shadow-light);
+      }
+
+      .button.disabled {
+        background: var(--disabled-color);
+        color: var(--bg-color);
+        box-shadow: 6px 6px 12px rgba(244, 67, 54, 0.3),
+          -6px -6px 12px var(--shadow-light);
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 30px;
+      }
+
+      .shortcut-text {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
+        font-family: "Faculty Glyphic", sans-serif;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .shortcuts-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-top: 15px;
       }
     </style>
   </head>
   <body>
+    <header class="header">
+      <div class="logo">
+        <img src="icons/uk_logo-32.png" alt="Logo" />
+      </div>
+      <div class="title">LangConvert</div>
+      <div class="faq">
+        <a href="#">FAQ</a>
+      </div>
+    </header>
     <div class="container">
-      <h3>LangConvert</h3>
-      <p>
-        LangConvert is a browser extension that automatically converts American
-        English words to their Commonwealth English equivalents as you browse the
-        web.
-      </p>
-      <p>
-        Whether you're reading articles, emails, or other content, this
-        extension ensures consistency with Commonwealth spelling conventions.
-      </p>
-      <button id="convertToggleButton" class="button">
-        Enable/Disable Conversion
+      <button id="convertToggleButton" class="button disabled">
+        Conversion Disabled
       </button>
+      <div class="shortcuts-container">
+        <span class="shortcut-text">Windows/Linux: Ctrl+Shift+1</span>
+        <span class="shortcut-text">Mac: Cmd+Shift+1</span>
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>
