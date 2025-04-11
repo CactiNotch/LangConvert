@@ -1,5 +1,8 @@
-TODO
-- [x] Allow extension to be disabled by the user
-- [x] Create UI
-- [ ] Add icons
-- [x] Handle random capitalisation/complete capitalisation
+### LangConvert
+
+LangConvert is a browser extension that automatically converts American
+English words to their Commonwealth English equivalents as you browse the
+web.
+
+Whether you're reading articles, emails, or other content, this
+extension ensures consistency with Commonwealth spelling conventions.
