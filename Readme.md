@@ -26,6 +26,14 @@ LangConvert handles common American to Commonwealth English conversions includin
 - '-er' to '-re' (center → centre)
 - Other common variations (aluminum → aluminium)
 
+### Does the extension account for variations between English amongst Commonwealth countries?
+
+The extension was designed with British/Australian English in mind, so it tends to follow the spelling conventions of these dialects.
+
+### What is Commonwealth English?
+
+Commonwealth English refers to the dialects of English that are spoken within former/current British territories and the U.K. e.g. Australian, Indian, Canadian, South African etc.
+
 ### Will it affect my typing or text input?
 
 No, LangConvert only converts text that's already on the page. It doesn't affect what you type in text fields, forms, or editors.

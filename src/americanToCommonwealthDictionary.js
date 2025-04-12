@@ -71,9 +71,9 @@ export const DICTIONARY = {
     organiz: "organis",
     steriliz: "sterlis",
     analyz: "analys",
+    paralyz: "paralys",
     centraliz: "centralis",
     personaliz: "personalis",
-    centraliz: "centralis",
     memoriz: "memoris",
     categoriz: "categoris",
     characteriz: "characteris",
@@ -110,7 +110,6 @@ export const DICTIONARY = {
     moderniz: "modernis",
     pasteuriz: "pasteuris",
     unioniz: "unionis",
-    feminiz: "feminis",
     localiz: "localis",
     digitiz: "digitis",
     digitizaliz: "digitisalis",
@@ -130,7 +129,6 @@ export const DICTIONARY = {
     monopoliz: "monopolis",
     vitaliz: "vitalis",
     mobiliz: "mobilis",
-    critiz: "critis",
     dramatiz: "dramatis",
     empathiz: "empathis",
     subsidiz: "subsidis",
@@ -144,6 +142,45 @@ export const DICTIONARY = {
     victimiz: "victimis",
     criminaliz: "criminalis",
     industrializ: "industrialis",
+    vaporiz: "vaporis",
+    publiciz: "publicis",
+    sexualiz: "sexualis",
+    specializ: "specialis",
+    technologiz: "technologis",
+    agoniz: "agonis",
+    monetiz: "monetis",
+    stabiliz: "stabilis",
+    legaliz: "legalis",
+    authoriz: "authoris",
+    emphasiz: "emphas",
+    optimiz: "optimis",
+    jeopardiz: "jeopardis",
+    neutraliz: "neutralis",
+    criticiz: "criticis",
+    synchroniz: "synchronis",
+    mesmeriz: "mesmeris",
+    glamoriz: "glamoris",
+    masculiniz: "masculinis",
+    feminiz: "feminis",
+    mineraliz: "mineralis",
+    chrisianiz: "chrisianis",
+    normaliz: "normalis",
+    adulteriz: "adulteris",
+    adjectiviz: "adjectivis",
+    objectiviz: "objectivis",
+    subjectiviz: "subjectivis",
+    amorphiz: "amorphis",
+    antagoniz: "antagonis",
+    protagniz: "protagnis",
+    alcoholiz: "alcoholis",
+    allegoriz: "allegoris",
+    analogiz: "analogis",
+    commercializ: "commercialis",
+    emotionaliz: "emotionalis",
+    climatiz: "climatis",
+    acclimatiz: "acclimatis",
+    accessoriz: "accessoris",
+    baptiz: "baptis",
   },
 
   // Special context-sensitive words
@@ -155,12 +192,13 @@ export const DICTIONARY = {
   // Words with travel-related variations
   travel: {
     traveler: "traveller",
-    traveler: "travellers",
+    travelers: "travellers",
     traveled: "travelled",
     traveling: "travelling",
   },
 };
 
+// These words have an issue with the suffix replacement logic
 export const ER_TO_RE_WORDS = [
   "center",
   "liter",
@@ -177,7 +215,17 @@ export const ER_TO_RE_WORDS = [
   "maneuver",
 ];
 
-export const PREFIXES = ["de", "un", "re", "pre", "post", "dis", "mis", "non"];
+export const PREFIXES = [
+  "de",
+  "un",
+  "re",
+  "pre",
+  "post",
+  "dis",
+  "mis",
+  "non",
+  "ab",
+];
 
 export const SUFFIXES = [
   "ed",
