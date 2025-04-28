@@ -38,9 +38,11 @@ function handleErToReReplacement(prefix, base, suffix, auBase) {
 
   // Handle special cases for -er to -re conversion with suffixes
   let adjustedSuffix = suffix;
+
   if (suffix.startsWith("e")) {
     adjustedSuffix = suffix.slice(1);
   }
+
   if (suffix === "ing") {
     // For words like "centering" -> "centring", remove the trailing 'e'
     return replacementBase.slice(0, -1) + adjustedSuffix;
@@ -70,6 +72,12 @@ export function replaceAmericanWithCommonwealthText(text) {
   return text.replace(regex, (match, prefix = "", base, suffix = "") => {
     // Skip exceptions
     if (EXCEPTIONS.includes(match.toLowerCase())) return match;
+    console.log(
+      "match: " + match,
+      "prefix: " + prefix,
+      "base: " + base,
+      "suffix: " + suffix
+    );
 
     // Handle special context-sensitive words
     const contextWord = Object.keys(DICTIONARY.contextSensitive).find((w) =>
